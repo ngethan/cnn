@@ -13,7 +13,7 @@ Figuring out the convolution was quite simple and just involved adapting the _va
 #### Forward Kernel
 
 Now the crux of the CNN—the convolutional layer. This involved taking in a 3 dimensional block of data as inputs (depth being 3). The kernels are also a 3 dimensional block in this case, spanning the full depth of the input. Something neat is that we can have multiple kernels, all of which extend the depth of the input. Each kernel contains a bias matrix that has the same shape as the output. Then, the layer would produce a 3 dimensional block of data as the output. Computing the output involved taking the cross-correlation with the input data and summing this up with the bias. That process is repeated with each kernel. We use the following formula for calculating the outputs: $$Y_1 = B_1 + X_1 \star K_{11} + X_2 \star K_{12} + X_3 \star K_{13}$$
-We can repeat the use of this equation for every kernel, simply by using a different kernel and bias matrix. The inputs, $X_n$, would stay the same. This is called the **forward propagation** of the convolutional layer. Using sum notation, we can write it like this: $$Y_i = B_i + \sum_{j=1}^{n} X_j \star K_{ij}, \space\space\space\space\space i =1...d $$
+We can repeat the use of this equation for every kernel, simply by using a different kernel and bias matrix. The inputs, $X_n$, would stay the same. This is called the **forward propagation** of the convolutional layer. Using sum notation, we can write it like this: $$Y_i = B_i + \sum_{j=1}^{n} X_j \star K_{ij}, \space\space\space\space\space i =1...d$$
 
 #### Backward Kernal
 
@@ -49,7 +49,7 @@ $$E = -\frac{1}{n} \sum_{i=1}^{n} \left[ y_i^* \log(y_i) + (1 - y_i^*) \log(1 - 
 
 The goal is to compute the derivative of E with respect to the output. Upon plugging $E$ into $\frac{\partial E}{\partial y_1}$, we find that $Y_1$ only appears in the first term. Thus, we can just use the chain rule and we get the following:
 
-$$\frac{\partial E}{\partial y_i} = \frac{1}{n} \left( \frac{1 - y_i^*}{1 - y_i} - \frac{y_i^*}{y_i} \right)$$
+$$\frac{\partial E}{\partial y_i} = \frac{1}{n} \left( \frac{1 - y_i^{*}}{1 - y_i} - \frac{y_i^{*}}{y_i} \right)$$
 
 Also, I added a small epsilon value that prevents log(0) and division by 0. After converting this to code, it looks something like this:
 
