@@ -43,13 +43,13 @@ The constructor takes in the shape of the input and output. The forward method r
 
 #### Binary cross entropy loss
 
-We're given a vector, $Y^*$, containing the desired outputs of the neural network. Keep in mind $y_i \space\epsilon\space \{0, 1\}$ (hence the term binary). We also have the actual output of the neural network, $Y$. The binary cross entropy loss is defined as the following:
+We're given a vector, $Y^\ast$, containing the desired outputs of the neural network. Keep in mind $y_i \space\epsilon\space \{0, 1\}$ (hence the term binary). We also have the actual output of the neural network, $Y$. The binary cross entropy loss is defined as the following:
 
-$$E = -\frac{1}{n} \sum_{i=1}^{n} \left[ y_i^* \log(y_i) + (1 - y_i^*) \log(1 - y_i) \right]$$
+$$E = -\frac{1}{n} \sum_{i=1}^{n} \left[ y_i^\ast \log(y_i) + (1 - y_i^\ast) \log(1 - y_i) \right]$$
 
 The goal is to compute the derivative of E with respect to the output. Upon plugging $E$ into $\frac{\partial E}{\partial y_1}$, we find that $Y_1$ only appears in the first term. Thus, we can just use the chain rule and we get the following:
 
-$$\frac{\partial E}{\partial y_i} = \frac{1}{n} \left( \frac{1 - y_i^\text{*}}{1 - y_i} - \frac{y_i^\text{*}}{y_i} \right)$$
+$$\frac{\partial E}{\partial y_i} = \frac{1}{n} \left( \frac{1 - y_i^\ast}{1 - y_i} - \frac{y_i^\ast}{y_i} \right)$$
 
 Also, I added a small epsilon value that prevents log(0) and division by 0. After converting this to code, it looks something like this:
 
