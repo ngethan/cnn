@@ -49,7 +49,7 @@ $$E = -\frac{1}{n} \sum_{i=1}^{n} \left[ y_i^* \log(y_i) + (1 - y_i^*) \log(1 - 
 
 The goal is to compute the derivative of E with respect to the output. Upon plugging $E$ into $\frac{\partial E}{\partial y_1}$, we find that $Y_1$ only appears in the first term. Thus, we can just use the chain rule and we get the following:
 
-$$\frac{\partial E}{\partial y_i} = \frac{1}{n} \left( \frac{1 - y_i^{*}}{1 - y_i} - \frac{y_i^{*}}{y_i} \right)$$
+$$\frac{\partial E}{\partial y_i} = \frac{1}{n} \left( \frac{1 - y_i^\text{*}}{1 - y_i} - \frac{y_i^\text{*}}{y_i} \right)$$
 
 Also, I added a small epsilon value that prevents log(0) and division by 0. After converting this to code, it looks something like this:
 
